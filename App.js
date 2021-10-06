@@ -1,20 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { enableScreens } from "react-native-screens";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";  // follow official website
-import CategoriesScreen from "./screens/CategoriesScreen";
-import CategoryMealsScreen from "./screens/CategoryMealsScreen";
-import FavoritesScreen from "./screens/FavoritesScreen";
-import FiltersScreen from "./screens/FiltersScreen";
-import MealDetailScreen from "./screens/MealDetailScreen";
+import MealsNavigator from "./Navigation/MealsNavigator";
 
-enableScreens();
-
-const Stack = createNativeStackNavigator();
 
 // for fetching fonts
 
@@ -48,15 +38,7 @@ export default function App() {
   // App loading while fetching fonts
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="CategoriesScreen" component={CategoriesScreen}/>
-        <Stack.Screen name="CategoryMealsScreen" component={CategoryMealsScreen}/>
-        <Stack.Screen name="FavoritesScreen" component={FavoritesScreen}/>
-        <Stack.Screen name="FiltersScreen" component={FiltersScreen}/>
-        <Stack.Screen name="MealDetailScreen" component={MealDetailScreen}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <MealsNavigator/>
   );
 }
 
