@@ -1,12 +1,17 @@
 import React from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import { CATEGORIES } from '../data/dummy-data'
 
-const CategoriesScreen = ({navigation}) => {
+const CategoriesScreen = (props) => {
+
+    const renderGridItem = (itemData) => {
+        return (
+            <View><Text>{itemData.item.title}</Text></View>
+        )
+    }
+
     return (
-        <View style={styles.screen}>
-            <Text>CategoriesScreen</Text>
-            <Button title='Favorite Screen' onPress={()=>{navigation.navigate('FavoritesScreen')}}/>
-        </View>
+        <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={1}/>
     )
 }
 
