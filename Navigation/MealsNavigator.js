@@ -20,11 +20,19 @@ const MealsNavigator = () => {
         <Stack.Screen
           name="CategoriesScreen"
           component={CategoriesScreen}
-          options={{ title: "Meal Categories", headerTintColor: 'white', headerStyle:{backgroundColor: Colors.primaryColor}}}
+          options={{
+            title: "Meal Categories",
+            headerTintColor: "white",
+            headerStyle: { backgroundColor: Colors.primaryColor },
+          }}
         />
         <Stack.Screen
           name="CategoryMealsScreen"
           component={CategoryMealsScreen}
+          options={(props)=>({
+            headerTitle: props.route.params.name,
+            stackPresentation: 'modal'  // transition when screen changes on ios
+          })}
         />
         <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
         <Stack.Screen name="FiltersScreen" component={FiltersScreen} />

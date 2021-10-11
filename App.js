@@ -5,7 +5,6 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";  // follow official website
 import MealsNavigator from "./Navigation/MealsNavigator";
 
-
 // for fetching fonts
 
 const fetchFonts = () => {
