@@ -36,7 +36,10 @@ const MealsNavigator = () => {
         />
         <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
         <Stack.Screen name="FiltersScreen" component={FiltersScreen} />
-        <Stack.Screen name="MealDetailScreen" component={MealDetailScreen} />
+        <Stack.Screen name="MealDetail" component={MealDetailScreen} options={(props)=>({
+          headerTitle: props.route.params.name,
+          // headerTitle: 'asdfsa',
+        })} />
       </Stack.Navigator>
     </NavigationContainer>
   );
