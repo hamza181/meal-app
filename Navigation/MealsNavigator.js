@@ -8,6 +8,9 @@ import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersScreen from "../screens/FiltersScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import Colors from "../constants/Colors";
+import { Button } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from '../components/HeaderButton'
 
 enableScreens();
 
@@ -29,17 +32,31 @@ const MealsNavigator = () => {
         <Stack.Screen
           name="CategoryMealsScreen"
           component={CategoryMealsScreen}
-          options={(props)=>({
+          options={(props) => ({
             headerTitle: props.route.params.name,
-            stackPresentation: 'modal'  // transition when screen changes on ios
+            stackPresentation: "modal", // transition when screen changes on ios
           })}
         />
         <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
         <Stack.Screen name="FiltersScreen" component={FiltersScreen} />
-        <Stack.Screen name="MealDetail" component={MealDetailScreen} options={(props)=>({
-          headerTitle: props.route.params.name,
-          // headerTitle: 'asdfsa',
-        })} />
+        <Stack.Screen
+          name="MealDetail"
+          component={MealDetailScreen}
+          options={(props) => ({
+            headerTitle: props.route.params.name,
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                  title="Favorite"
+                  iconName="ios-star"
+                  onPress={() => {
+                    alert("asdfasdf");
+                  }}
+                />
+              </HeaderButtons>
+            ),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

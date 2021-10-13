@@ -40,10 +40,12 @@ const styles = StyleSheet.create({
   },
   mealItem: {
     height: 200,
-    width: "100%",
+    width: "97%",
     backgroundColor: "#f5f5f5",
     borderRadius: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    marginVertical: 10,
+    alignSelf: 'center'
   },
   mealHeader: {
     height: "85%",
