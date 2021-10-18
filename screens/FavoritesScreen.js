@@ -1,12 +1,13 @@
 import React from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
+import MealsList from '../components/MealsList'
+import { MEALS } from '../data/dummy-data'
 
 const FavoritesScreen = (props) => {
+    const favMeals = MEALS.filter(meal => meal.id === 'm1' || meal.id === 'm2')
+    
     return (
-        <View style={styles.screen}>
-            <Text>FavoritesScreen</Text>
-            <Button title='Categories Screen' onPress={()=>{props.navigation.navigate('CategoriesScreen')}}/>
-        </View>
+        <MealsList listData={favMeals} navigation={props.navigation} />
     )
 }
 
