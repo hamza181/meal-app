@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 const FiltersScreen = () => {
     return (
         <View style={styles.screen}>
-            <Text>FiltersScreen</Text>
+            <Text>Filters Screen</Text>
         </View>
     )
 }

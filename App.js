@@ -4,6 +4,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";  // follow official website
 import MealsFavTabNavigator from "./Navigation/Navigator";
+import MainNavigator from "./Navigation/Navigator";
 
 // for fetching fonts
 
@@ -37,7 +38,7 @@ export default function App() {
   // App loading while fetching fonts
 
   return (
-    <MealsFavTabNavigator />
+    <MainNavigator />
   );
 }
 
