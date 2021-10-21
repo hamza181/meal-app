@@ -172,9 +172,7 @@ const FiltersScreenNavigator = (navData) => {
             </HeaderButtons>
           ),
           headerCenter: () => (
-            <Text style={{ color: "white", fontSize: 18 }}>
-              Filter Screen
-            </Text>
+            <Text style={{ color: "white", fontSize: 18 }}>Filter Screen</Text>
           ),
         })}
       />
@@ -187,12 +185,22 @@ const MainNavigator = () => {
   return (
     // there should be only 1 navigation container in whole app
     <NavigationContainer>
-      <Drawer.Navigator screenOptions={{ headerShown: false }}>
+      <Drawer.Navigator
+        screenOptions={{
+          headerShown: false,
+          drawerActiveTintColor: Colors.accentColor,
+          drawerLabelStyle:{fontFamily: 'open-sans-bold'}
+        }}
+        defaultScreenOptions={{}}
+      >
         <Drawer.Screen
           name="MealsFavTabNavigator"
           component={MealsFavTabNavigator}
         />
-        <Drawer.Screen name="FiltersScreenNavigator" component={FiltersScreenNavigator} />
+        <Drawer.Screen
+          name="FiltersScreenNavigator"
+          component={FiltersScreenNavigator}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
