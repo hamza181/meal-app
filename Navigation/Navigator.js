@@ -172,7 +172,18 @@ const FiltersScreenNavigator = (navData) => {
             </HeaderButtons>
           ),
           headerCenter: () => (
-            <Text style={{ color: "white", fontSize: 18 }}>Filter Screen</Text>
+            <Text style={{ color: "white", fontSize: 20 }}>Filter Screen</Text>
+          ),
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+              <Item
+                title="Save"
+                iconName="ios-save"
+                buttonStyle={{ color: "white" }}
+                // save function is in FiltersScreen component
+                onPress={()=>{props.route.params.save()}}
+              />
+            </HeaderButtons>
           ),
         })}
       />
