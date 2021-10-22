@@ -85,7 +85,7 @@ const MealsNavigator = (navData) => {
                 }
                 onPress={() => {
                   props.route.params.toggleFav();
-                  console.log(props.route.params)
+                  console.log(props.route.params);
                 }}
               />
             </HeaderButtons>

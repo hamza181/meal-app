@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Button, StyleSheet, Switch, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
 import Colors from "../constants/Colors";
+import { setFilters } from "../store/actions/meals";
 
 const FilterSwitch = (props) => {
   return (
@@ -17,20 +19,23 @@ const FilterSwitch = (props) => {
 };
 
 const FiltersScreen = (props) => {
-  const [isGluteenFree, setIsGluteenFree] = useState(false);
+  const dispatch = useDispatch();
+
+  const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
 
   const saveFilters = useCallback(() => {
     const appliedFilters = {
-      gluteenFree: isGluteenFree,
+      glutenFree: isGlutenFree,
       lactoseFree: isLactoseFree,
       vegan: isVegan,
       vegetarian: isVegetarian,
     };
     console.log(appliedFilters);
-  }, [isGluteenFree, isLactoseFree, isVegan, isVegetarian]);
+    dispatch(setFilters(appliedFilters));
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
   // setParams and setOptions should only be called in useEffect
   useEffect(() => {
@@ -42,10 +47,10 @@ const FiltersScreen = (props) => {
     <View style={styles.screen}>
       <Text style={styles.title}>Available Filters / Restrictions</Text>
       <FilterSwitch
-        label="Gluteen-free"
-        state={isGluteenFree}
+        label="Gluten-free"
+        state={isGlutenFree}
         //   the below function is used to toggle switch true and false
-        onChange={(newValue) => setIsGluteenFree(newValue)}
+        onChange={(newValue) => setIsGlutenFree(newValue)}
       />
       <FilterSwitch
         label="Lactose-free"

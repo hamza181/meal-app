@@ -6,10 +6,9 @@ import MealsList from "../components/MealsList";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 
 const CategoryMealsScreen = (props) => {
-
   // get states from reducer
   // meals is a name for mealsReducer which is defined in rootReducer
-  const availableMeals = useSelector(state => state.meals.filteredMeals)
+  const availableMeals = useSelector((state) => state.meals.filteredMeals);
 
   // get param id from Categories Screen
   const catId = props.route.params.categoryId;
@@ -22,13 +21,25 @@ const CategoryMealsScreen = (props) => {
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   );
 
-  return (
-    <MealsList listData={displayedMeals} navigation={props.navigation} />
-  );
+  if (displayedMeals.length === 0) {
+    return (
+      <View style={styles.content}>
+        <Text>
+          No meals found ! To see data uncheck filters from side drawer
+        </Text>
+      </View>
+    );
+  }
+
+  return <MealsList listData={displayedMeals} navigation={props.navigation} />;
 };
 
 export default CategoryMealsScreen;
 
 const styles = StyleSheet.create({
-  
+  content: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

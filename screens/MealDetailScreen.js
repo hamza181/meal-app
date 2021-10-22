@@ -31,7 +31,7 @@ const MealDetailScreen = (props) => {
   const dispatch = useDispatch();
 
   const mealId = props.route.params.mealId;
-  
+
   const currentMealIsFavorite = useSelector((state) =>
     state.meals.favoriteMeals.some((meal) => meal.id === mealId)
   );
@@ -55,9 +55,9 @@ const MealDetailScreen = (props) => {
 
   useEffect(() => {
     props.navigation.setParams({
-      isFav: currentMealIsFavorite
-    })
-  }, [currentMealIsFavorite])
+      isFav: currentMealIsFavorite,
+    });
+  }, [currentMealIsFavorite]);
 
   return (
     <ScrollView>
