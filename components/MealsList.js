@@ -14,8 +14,10 @@ const MealsList = (props) => {
             affordabilty={itemData.item.affordabilty}
             onSelectMeal={() => {
               props.navigation.navigate("MealDetail", {
+                // these are params which we can also set by setParam() function
                 mealId: itemData.item.id,
-                name: itemData.item.title,
+                // we are giving title with setParams in MealDetailScreen
+                // mealTitle: itemData.item.title
               });
             }}
           />

@@ -1,5 +1,5 @@
 import { StackActions } from "@react-navigation/routers";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   Button,
   Image,
@@ -8,21 +8,56 @@ import {
   Text,
   View,
 } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 import DefaultText from "../components/DefaultText";
 import { MEALS } from "../data/dummy-data";
+import { toggleFavorite } from "../store/actions/meals";
 
-const ListItem = props => {
+const ListItem = (props) => {
   return (
     <View style={styles.listItem}>
       <DefaultText>{props.children}</DefaultText>
     </View>
-  )
-}
+  );
+};
 
 const MealDetailScreen = (props) => {
-  const mealId = props.route.params.mealId;
+  // get states from reducer
+  // meals is a name for mealsReducer which is defined in rootReducer
+  // the second meals is defined in initial state of mealReducer
+  const availableMeals = useSelector((state) => state.meals.meals);
 
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  // dispatch is used to call functions in actions
+  const dispatch = useDispatch();
+
+  const mealId = props.route.params.mealId;
+  
+  const currentMealIsFavorite = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === mealId)
+  );
+
+  const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
+
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(mealId));
+  }, [dispatch, mealId]);
+
+  // send data as params in navigator
+  // setParams only works with useEffect
+  useEffect(() => {
+    props.navigation.setParams({
+      mealTitle: selectedMeal.title,
+    });
+    props.navigation.setParams({
+      toggleFav: toggleFavoriteHandler,
+    });
+  }, [toggleFavoriteHandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({
+      isFav: currentMealIsFavorite
+    })
+  }, [currentMealIsFavorite])
 
   return (
     <ScrollView>
@@ -64,8 +99,8 @@ const styles = StyleSheet.create({
   listItem: {
     marginVertical: 10,
     marginHorizontal: 20,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderWidth: 1,
-    padding: 10
-  }
+    padding: 10,
+  },
 });

@@ -74,14 +74,18 @@ const MealsNavigator = (navData) => {
         name="MealDetail"
         component={MealDetailScreen}
         options={(props) => ({
-          headerTitle: props.route.params.name,
+          // headerTitle: props.route.params.name,
+          headerTitle: props.route.params.mealTitle,
           headerRight: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
               <Item
                 title="Favorite"
-                iconName="ios-star"
+                iconName={
+                  props.route.params.isFav ? "ios-star" : "ios-star-outline"
+                }
                 onPress={() => {
-                  alert("asdfasdf");
+                  props.route.params.toggleFav();
+                  console.log(props.route.params)
                 }}
               />
             </HeaderButtons>
