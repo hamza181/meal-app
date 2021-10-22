@@ -1,10 +1,19 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
-import AppLoading from "expo-app-loading";  // follow official website
-import MealsFavTabNavigator from "./Navigation/Navigator";
+import AppLoading from "expo-app-loading"; // follow official website
 import MainNavigator from "./Navigation/Navigator";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import mealsReducer from "./store/reducers/meals";
+
+// create root reducer in which all reducers but in this app thee is only 1 reducers
+const rootReducer = combineReducers({
+  meals: mealsReducer,
+});
+
+// create store for redux
+const store = createStore(rootReducer);
 
 // for fetching fonts
 
@@ -17,7 +26,6 @@ const fetchFonts = () => {
 // for fetching fonts
 
 export default function App() {
-
   const [fontLoaded, setFontLoaded] = useState(false);
 
   // App loading while fetching fonts
@@ -38,7 +46,10 @@ export default function App() {
   // App loading while fetching fonts
 
   return (
-    <MainNavigator />
+    // wrap the top most component in the Provider
+    <Provider store={store}>
+      <MainNavigator />
+    </Provider>
   );
 }
 

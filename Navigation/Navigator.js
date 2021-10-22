@@ -181,7 +181,9 @@ const FiltersScreenNavigator = (navData) => {
                 iconName="ios-save"
                 buttonStyle={{ color: "white" }}
                 // save function is in FiltersScreen component
-                onPress={()=>{props.route.params.save()}}
+                onPress={() => {
+                  props.route.params.save();
+                }}
               />
             </HeaderButtons>
           ),
@@ -200,7 +202,7 @@ const MainNavigator = () => {
         screenOptions={{
           headerShown: false,
           drawerActiveTintColor: Colors.accentColor,
-          drawerLabelStyle:{fontFamily: 'open-sans-bold'}
+          drawerLabelStyle: { fontFamily: "open-sans-bold" },
         }}
         defaultScreenOptions={{}}
       >
