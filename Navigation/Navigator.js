@@ -98,19 +98,50 @@ const MealsNavigator = (navData) => {
 
 // 2nd Navigator
 
-const FavoriteNavigator = () => {
+const FavoriteNavigator = (navData) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="FavoritesScreen"
         component={FavoritesScreen}
-        options={{
+        options={(props) => ({
           headerTitle: "Favorite Screen",
           headerTintColor: "white",
           headerStyle: { backgroundColor: Colors.primaryColor },
-        }}
+          headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+              <Item
+                title="Favorite"
+                iconName="menu"
+                buttonStyle={{ color: "white" }}
+                onPress={() => {
+                  navData.navigation.toggleDrawer();
+                }}
+              />
+              <Item title='Favorite Screen'
+                buttonStyle={{ color: "white", fontSize: 17, textTransform: "none" }}/>
+            </HeaderButtons>
+          ),
+        })}
       />
-      <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+      <Stack.Screen name="MealDetail" component={MealDetailScreen} options={(props) => ({
+          // headerTitle: props.route.params.name,
+          headerTitle: props.route.params.mealTitle,
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+              <Item
+                title="Favorite"
+                iconName={
+                  props.route.params.isFav ? "ios-star" : "ios-star-outline"
+                }
+                onPress={() => {
+                  props.route.params.toggleFav();
+                  console.log(props.route.params);
+                }}
+              />
+            </HeaderButtons>
+          ),
+        })}/>
     </Stack.Navigator>
   );
 };
