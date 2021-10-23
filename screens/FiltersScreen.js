@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Button, StyleSheet, Switch, Text, View } from "react-native";
+import { Button, LogBox, StyleSheet, Switch, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import Colors from "../constants/Colors";
 import { setFilters } from "../store/actions/meals";
@@ -19,6 +19,12 @@ const FilterSwitch = (props) => {
 };
 
 const FiltersScreen = (props) => {
+  // ignore all warning msg in this screen
+  // this warning is due to passing function in setParams
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
+
   const dispatch = useDispatch();
 
   const [isGlutenFree, setIsGlutenFree] = useState(false);

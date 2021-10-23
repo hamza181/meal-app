@@ -3,10 +3,12 @@ import React, { useCallback, useEffect } from "react";
 import {
   Button,
   Image,
+  LogBox,
   ScrollView,
   StyleSheet,
   Text,
   View,
+  YellowBox,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import DefaultText from "../components/DefaultText";
@@ -22,6 +24,12 @@ const ListItem = (props) => {
 };
 
 const MealDetailScreen = (props) => {
+  // ignore all warning msg in this screen
+  // this warning is due to passing function in setParams
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
+
   // get states from reducer
   // meals is a name for mealsReducer which is defined in rootReducer
   // the second meals is defined in initial state of mealReducer
